@@ -6,7 +6,62 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
+library('knitr')
+library('dplyr')
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+```{r echo = FALSE}
+# import data from shots_data
+column_classes = c("character", "character", "character", "integer", "integer", "integer", "integer", "character", "character",
+                   "character", "integer", "character", "integer", "integer", "character", "integer")
+shots_data <- read.csv("../data/shots-data.csv", stringsAsFactors = FALSE, colClasses = column_classes)
+andre <- filter(shots_data, name == "Andre Iguodala")
+draymond <- filter(shots_data, name == "Draymond Green")
+kevin <- filter(shots_data, name == "Kevin Durant")
+klay <- filter(shots_data, name == "Klay Thompson")
+stephen <- filter(shots_data, name == "Stephen Curry")
+
+name <- c("Andre Iguodala", "Draymond Green", "Kevin Durant", "Klay Thompson", "Stephen Curry")
+total <- c(nrow(andre), nrow(draymond), nrow(kevin), nrow(klay), nrow(stephen))
+made <- c(nrow(filter(andre, shot_made_flag == "shot_yes")), nrow(filter(draymond, shot_made_flag == "shot_yes")), nrow(filter(kevin, shot_made_flag == "shot_yes")), nrow(filter(klay, shot_made_flag == "shot_yes")), nrow(filter(stephen, shot_made_flag == "shot_yes")))
+perc_made <- made / total
+
+total_2 <- c(nrow(filter(andre, shot_type == "2PT Field Goal")), 
+             nrow(filter(draymond, shot_type == "2PT Field Goal")), 
+             nrow(filter(kevin, shot_type == "2PT Field Goal")), 
+             nrow(filter(klay, shot_type == "2PT Field Goal")), 
+             nrow(filter(stephen, shot_type == "2PT Field Goal")))
+made_2 <- c(nrow((filter(filter(andre, shot_type == "2PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(draymond, shot_type == "2PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(kevin, shot_type == "2PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(klay, shot_type == "2PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(stephen, shot_type == "2PT Field Goal"), shot_made_flag == "shot_yes"))))
+perc_made_2 <- made_2 / total_2
+
+total_3 <- c(nrow(filter(andre, shot_type == "3PT Field Goal")), 
+             nrow(filter(draymond, shot_type == "3PT Field Goal")), 
+             nrow(filter(kevin, shot_type == "3PT Field Goal")), 
+             nrow(filter(klay, shot_type == "3PT Field Goal")), 
+             nrow(filter(stephen, shot_type == "3PT Field Goal")))
+made_3 <- c(nrow((filter(filter(andre, shot_type == "3PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(draymond, shot_type == "3PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(kevin, shot_type == "3PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(klay, shot_type == "3PT Field Goal"), shot_made_flag == "shot_yes"))), 
+            nrow((filter(filter(stephen, shot_type == "3PT Field Goal"), shot_made_flag == "shot_yes"))))
+perc_made_3 <- made_3 / total_3
+
+effective_shooting_percentage = arrange(data.frame(name, total, made, perc_made), desc(perc_made))
+effective_shooting_percentage_2 = arrange(data.frame(name, total_2, made_2, perc_made_2), desc(perc_made_2))
+effective_shooting_percentage_3 = arrange(data.frame(name, total_3, made_3, perc_made_3), desc(perc_made_3))
+```
+
+```{r echo = FALSE, results = 'asis'}
+knitr::kable(effective_shooting_percentage)
+knitr::kable(effective_shooting_percentage_2)
+knitr::kable(effective_shooting_percentage_3)
 ```
 
 ## 
