@@ -37,11 +37,11 @@ thompson$shot_made_flag[thompson$shot_made_flag == "y"] <- "shot_yes"
 curry$shot_made_flag[curry$shot_made_flag == "y"] <- "shot_yes"
 
 # add column 'minute' w/ minute number where a shot occurred
-iguodala["minute"] = (iguodala["period"] + 1) * 12 - iguodala["minutes_remaining"]
-green["minute"] = (green["period"] + 1) * 12 - green["minutes_remaining"]
-durant["minute"] = (durant["period"] + 1) * 12 - durant["minutes_remaining"]
-thompson["minute"] = (thompson["period"] + 1) * 12 - thompson["minutes_remaining"]
-curry["minute"] = (curry["period"] + 1) * 12 - curry["minutes_remaining"]
+iguodala["minute"] = (iguodala["period"]) * 12 - iguodala["minutes_remaining"]
+green["minute"] = (green["period"]) * 12 - green["minutes_remaining"]
+durant["minute"] = (durant["period"]) * 12 - durant["minutes_remaining"]
+thompson["minute"] = (thompson["period"]) * 12 - thompson["minutes_remaining"]
+curry["minute"] = (curry["period"]) * 12 - curry["minutes_remaining"]
 
 # use sink to send the summary output into individual text files e.g. output/andre-iguodala.txt
 sink("../output/andre-iguodala.txt", type = "output")

@@ -15,10 +15,10 @@
                     Floating Jump shot : 36                        Max.   :71.00                     
                     (Other)            :267                                                          
        x                  y             name               minute     
- Min.   :-246.000   Min.   :-36.0   Length:1250        Min.   :13.00  
- 1st Qu.: -96.500   1st Qu.: 18.0   Class :character   1st Qu.:22.25  
- Median :   0.500   Median :144.0   Mode  :character   Median :36.00  
- Mean   :  -3.642   Mean   :135.4                      Mean   :35.44  
- 3rd Qu.:  91.000   3rd Qu.:228.0                      3rd Qu.:46.00  
- Max.   : 240.000   Max.   :717.0                      Max.   :60.00  
+ Min.   :-246.000   Min.   :-36.0   Length:1250        Min.   : 1.00  
+ 1st Qu.: -96.500   1st Qu.: 18.0   Class :character   1st Qu.:10.25  
+ Median :   0.500   Median :144.0   Mode  :character   Median :24.00  
+ Mean   :  -3.642   Mean   :135.4                      Mean   :23.44  
+ 3rd Qu.:  91.000   3rd Qu.:228.0                      3rd Qu.:34.00  
+ Max.   : 240.000   Max.   :717.0                      Max.   :48.00  
                                                                       

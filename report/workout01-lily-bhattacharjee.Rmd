@@ -8,10 +8,10 @@ output: github_document
 ```{r setup, include=FALSE}
 library('knitr')
 library('dplyr')
+library('plyr')
+library('ggplot2')
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## Introduction
 
 ```{r echo = FALSE}
 # import data from shots_data
@@ -58,10 +58,144 @@ effective_shooting_percentage_2 = arrange(data.frame(name, total_2, made_2, perc
 effective_shooting_percentage_3 = arrange(data.frame(name, total_3, made_3, perc_made_3), desc(perc_made_3))
 ```
 
+## Introduction
+
+The Golden State Warriors, a professional basketball team based in California, has made history multiple times, setting many NBA records including the best regular season and largest number of season wins. The team has won six NBA championships to tie for third place in NBA history, and is one of the highest-valued sports teams in the world. In this report, we delve deeper into the data behind the rankings, focusing on the 2016 season shot records of five of the current members (encompassing the forward and guard positions) -- Andre Iguodala, Draymond Green, Kevin Durant, Klay Thompson, and Stephen Curry. By noting the objectively most successful players with regards to attempted shot locations, shot type, time of shot, and action leading into the shot, we can distinguish player strengths and how responsibilities or strategy objectives are distributed amongst the team, leading to a higher chance at winning matches.
+
+## A Comparative Analysis of Shot Locations
+
+```{r echo = FALSE, fig.align = "center"}
+knitr::include_graphics("../images/gsw-shot-charts.png")
+```
+
+## Strengths by Shot Type
+
 ```{r echo = FALSE, results = 'asis'}
 knitr::kable(effective_shooting_percentage)
+```
+
+```{r echo = FALSE, results = 'asis'}
 knitr::kable(effective_shooting_percentage_2)
+```
+
+```{r echo = FALSE, results = 'asis'}
 knitr::kable(effective_shooting_percentage_3)
 ```
 
-## 
+## Strengths by Game Period
+
+```{r echo = FALSE, results = 'asis'}
+nbreaks <- 20
+
+hist(andre$minute, breaks = nbreaks, main = "Histogram of Shot Minutes (Andre Iguodala)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(filter(andre, andre$shot_made_flag == "shot_yes")$minute, breaks = nbreaks, main = "Histogram of Successful Shot Minutes (Andre Iguodala)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(draymond$minute, breaks = nbreaks, main = "Histogram of Shot Minutes (Draymond Green)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(filter(draymond, draymond$shot_made_flag == "shot_yes")$minute, breaks = nbreaks, main = "Histogram of Successful Shot Minutes (Draymond Green)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(kevin$minute, breaks = nbreaks, main = "Histogram of Shot Minutes (Kevin Durant)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(filter(kevin, kevin$shot_made_flag == "shot_yes")$minute, breaks = nbreaks, main = "Histogram of Successful Shot Minutes (Kevin Durant)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(klay$minute, breaks = nbreaks, main = "Histogram of Shot Minutes (Klay Thompson)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(filter(klay, klay$shot_made_flag == "shot_yes")$minute, breaks = nbreaks, main = "Histogram of Successful Shot Minutes (Klay Thompson)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(stephen$minute, breaks = nbreaks, main = "Histogram of Shot Minutes (Stephen Curry)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+```{r echo = FALSE, results = 'asis'}
+hist(filter(stephen, stephen$shot_made_flag == "shot_yes")$minute, breaks = nbreaks, main = "Histogram of Successful Shot Minutes (Stephen Curry)", xlab = "Minute Number", xlim = c(0, 50))
+abline(v = 12, col = "red", lwd = 3, lty = 2)
+abline(v = 24, col = "red", lwd = 3, lty = 2)
+abline(v = 36, col = "red", lwd = 3, lty = 2)
+abline(v = 48, col = "red", lwd = 3, lty = 2)
+```
+
+## Favored Actions Preceding Shots
+
+```{r echo = FALSE, results = 'asis'}
+andre_action <- count(andre, "action_type")
+andre_action <- arrange(andre_action, desc(freq))[1:5, ]
+ggplot(andre_action) + geom_bar(aes(x = action_type, weight = freq)) + theme_minimal() + xlab("Action Type") + ylab("Number of Occurrences") + ggtitle("Action Type Frequencies (Andre Iguodala)")
+```
+
+```{r echo = FALSE, results = 'asis'}
+draymond_action <- count(draymond, "action_type")
+draymond_action <- arrange(draymond_action, desc(freq))[1:5, ]
+ggplot(draymond_action) + geom_bar(aes(x = action_type, weight = freq)) + theme_minimal() + xlab("Action Type") + ylab("Number of Occurrences") + ggtitle("Action Type Frequencies (Draymond Green)")
+```
+
+```{r echo = FALSE, results = 'asis'}
+kevin_action <- count(kevin, "action_type")
+kevin_action <- arrange(kevin_action, desc(freq))[1:5, ]
+ggplot(kevin_action) + geom_bar(aes(x = action_type, weight = freq)) + theme_minimal() + xlab("Action Type") + ylab("Number of Occurrences") + ggtitle("Action Type Frequencies (Kevin Durant)")
+```
+
+```{r echo = FALSE, results = 'asis'}
+klay_action <- count(klay, "action_type")
+klay_action <- arrange(klay_action, desc(freq))[1:5, ]
+ggplot(klay_action) + geom_bar(aes(x = action_type, weight = freq)) + theme_minimal() + xlab("Action Type") + ylab("Number of Occurrences") + ggtitle("Action Type Frequencies (Klay Thompson)")
+```
+
+```{r echo = FALSE, results = 'asis'}
+stephen_action <- count(stephen, "action_type")
+stephen_action <- arrange(stephen_action, desc(freq))[1:5, ]
+ggplot(stephen_action) + geom_bar(aes(x = action_type, weight = freq)) + theme_minimal() + xlab("Action Type") + ylab("Number of Occurrences") + ggtitle("Action Type Frequencies (Stephen Curry)")
+```
+
+## Conclusion

@@ -15,10 +15,10 @@
                     Cutting Dunk Shot : 22                        Max.   :55.00                      Max.   : 240.00  
                     (Other)           :154                                                                            
        y             name               minute     
- Min.   :-31.0   Length:578         Min.   :13.00  
- 1st Qu.:  8.0   Class :character   1st Qu.:22.00  
- Median : 36.0   Mode  :character   Median :35.00  
- Mean   :100.6                      Mean   :34.39  
- 3rd Qu.:217.0                      3rd Qu.:45.00  
- Max.   :535.0                      Max.   :60.00  
+ Min.   :-31.0   Length:578         Min.   : 1.00  
+ 1st Qu.:  8.0   Class :character   1st Qu.:10.00  
+ Median : 36.0   Mode  :character   Median :23.00  
+ Mean   :100.6                      Mean   :22.39  
+ 3rd Qu.:217.0                      3rd Qu.:33.00  
+ Max.   :535.0                      Max.   :48.00  
                                                    

@@ -15,10 +15,10 @@
                     Running Layup Shot : 115                         Max.   :71.00                     
                     (Other)            :1139                                                           
        x                  y             name               minute    
- Min.   :-248.000   Min.   :-39.0   Length:4334        Min.   :13.0  
- 1st Qu.: -56.000   1st Qu.: 13.0   Class :character   1st Qu.:23.0  
- Median :   1.000   Median : 95.0   Mode  :character   Median :35.0  
- Mean   :   7.746   Mean   :109.4                      Mean   :34.8  
- 3rd Qu.:  95.500   3rd Qu.:198.0                      3rd Qu.:45.0  
- Max.   : 246.000   Max.   :717.0                      Max.   :60.0  
+ Min.   :-248.000   Min.   :-39.0   Length:4334        Min.   : 1.0  
+ 1st Qu.: -56.000   1st Qu.: 13.0   Class :character   1st Qu.:11.0  
+ Median :   1.000   Median : 95.0   Mode  :character   Median :23.0  
+ Mean   :   7.746   Mean   :109.4                      Mean   :22.8  
+ 3rd Qu.:  95.500   3rd Qu.:198.0                      3rd Qu.:33.0  
+ Max.   : 246.000   Max.   :717.0                      Max.   :48.0  
                                                                      
