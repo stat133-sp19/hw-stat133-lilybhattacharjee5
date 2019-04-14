@@ -1,8 +1,10 @@
 ##################################################
 ## Title: Shot Charts
-## Description:
-## Input(s):
-## Output(s):
+## Description: This file creates pdf files corresponding to the shot charts i.e. the x-y coordinate positions from which
+## shots were attempted and made superimposed upon a diagram of the basketball court. It also generates a faceted image
+## and pdf file chart for the shot charts of each player adjacent to each other.
+## Input(s): the file "shots-data.csv", the image "../images/nba-court.jpg" to set the court background image
+## Output(s): pdf files for each player's shot chart and a facetted chart by player name
 ##################################################
 
 # import necessary libraries

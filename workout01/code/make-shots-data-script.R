@@ -1,8 +1,11 @@
 ##################################################
 ## Title: Data Preparation
-## Description:
-## Input(s):
-## Output(s):
+## Description: The file cleans the existing data present in firstname-lastname.csv format files corresponding to each
+## player. It adds a column called "name" to each dataset, changes the original values in shot_made_flag to be more
+## expressive, calculates a "minute" column to correspond to each shot, combines each individual dataset into an overall one,
+## and writes summaries to text files.
+## Input(s): files of the format firstname-lastname.csv corresponding to each of the 5 GSW players
+## Output(s): a csv file called shots-data.csv and summary files for each of the player-specific datasets as well as shots-data
 ##################################################
 
 # read in the 5 data sets w/ relative file paths
