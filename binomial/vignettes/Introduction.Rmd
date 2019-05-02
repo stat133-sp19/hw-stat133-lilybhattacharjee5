@@ -1,0 +1,7 @@
+---
+title: "Introduction to the Binomial Package"
+output:
+  github_document:
+    df_print: paged
+---
+
