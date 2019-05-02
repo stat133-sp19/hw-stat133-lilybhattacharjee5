@@ -3,9 +3,11 @@
 `"binomial"` is an R package that provides functions to simulate the outputs of a binomial distribution / variable.
 
 - `bin_variable()` creates a binomial variable object (of class `"bin_var"`)
-- 
-- `plot`
-- `summary`
+- `bin_probability()` displays the probability that k successes will occur among n trials overall at p probability of success per trial
+- `plot.bindis()` and `plot.bincum()` plot the pdf and cdf probability distributions visually
+- `summary.binvar()` displays summary statistics including mean, variance, mode, skewness, and kurtosis of a binomial scenario with n trials overall and p probability of success
+- `bin_mean()`, `bin_variance()`, `bin_mode()`, `bin_skewness()`, `bin_kurtosis()` return the corresponding summary statistics individually
+- `bin_choose()` returns the number of combinations in which k successes occur among n trials total with p probability of success for each trial
 
 ## Motivation
 This package has been developed for the Workout 3 assignment for Stat 133.
