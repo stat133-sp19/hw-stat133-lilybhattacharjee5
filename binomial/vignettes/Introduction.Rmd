@@ -1,7 +1,83 @@
 ---
 title: "Introduction to the Binomial Package"
-output:
-  github_document:
-    df_print: paged
+author: "Lily Bhattacharjee"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to cointoss}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>", errors = TRUE)
+library(binomial)
+```
+
+## Binomial variables
+
+The package `"binomial"` is a minimal implementation for simulating binomial variables and their corresponding probabilities (pdfs and cdfs), and to visualize these probabilities in relation to each other given scenarios of number of successes (k), number of trials overall (n), and the probability of success (p).
+
+## Creating a `binomial` variable
+
+The first step is to create a `"binomial"` variable (binvar) object with the function `bin_variable()`.
+
+```{r}
+my_binvar <- bin_variable(10, 0.5) # 10 trials overall, 0.5 probability of success
+my_binvar
+```
+
+The first parameter of the function is the number of `trials` and the second is the `prob`ability of success. The number of trials must be nonnegative and probability must lie in the range in between 0 and 1 inclusive.
+
+## Simulating a `binomial` distribution
+
+Once a `bin_var` object has been defined, you can use the function `print.binvar()` to print the number of trials and probability of success corresponding to the binomial variable in an organized way, or `summary.binvar()` to calculte summary statistics for the binomial variable including mean, variance, mode, skewness, and kurtosis. The function `print.summary.binvar()` is used to display these results on the console.
+
+```{r}
+print.binvar(my_binvar)
+
+my_summary <- summary.binvar(my_binvar)
+print.summary.binvar(my_summary)
+```
+
+## Plotting `binomial` probabilities
+
+In parallel to creating binomial variable objects, the `binomial` package can calculate the probability of a certain number of successes occurring within a certain number of trials where the probability of success is the same -- some fraction $p$ during each trial. For this, the `bin_probability()` function is used in the following manner and the function's inputs can be vectorized to take in a range of success numbers:
+
+```{r}
+bin_probability(5, 10, 0.5) # returns the probability of 5 successes within 10 trials given 0.5 probability of success during each trial as a numeric output
+bin_probability(1:5, 10, 0.5) # returns the probability of 1, 2, ..., 5 successes within 10 trials given 0.5 probability of success during each trial as an ordered numeric vector
+```
+
+The functions `bin_distribution()` and `bin_cumulative()` build on top of `bin_probability()` to generate dataframes that contain probabilities of every possible number of successes occurring given a certain number of trials overall and the probability of success during each trial. The former function will return a `bin_dis` and `data.frame` object containing two columns -- the number of successes and the probability of that number of successes occurring. The latter function will return a `bin_cum` and `data.frame` object containing three columns -- the two mentioned previously along with a new cumulative probability column that sums up the probabilities of any number of successes less than or equal to the current number occurring. The following are a few examples of these functions being used:
+
+```{r}
+bin_distr <- bin_distribution(10, 0.5) # returns a dataframe & bin_dis object with the probabilities of 0, 1, 2, ..., 10 successes occurring if each trial has 0.5 probability of success
+bin_cuml <- bin_cumulative(10, 0.5) # returns a dataframe & bin_cum object with the *cumulative* probabilities of 0, 1, 2, ..., 10 successes occurring if each trial has 0.5 probability of success
+```
+
+The objects created and assigned to `bin_distr` and `bin_cuml` can be plotted in the ggplot aesthetic for visualization purposes using the methods `plot.bindis()` and `plot.bincum()`. Note that `plot.bindis()` will only accept `bin_dis` objects and `plot.bincum()` will only accept `bin_cum` objects. Examples of usage are below:
+
+```{r}
+plot.bindis(bin_distr)
+plot.bincum(bin_cuml)
+```
+
+## Miscellaneous functions
+
+Following up on the creation of binomial variable objects, the following functions will return specific statistics given a specific number of trials and probability of success -- `bin_mean()` (returns mean), `bin_variance()` (returns variance), `bin_mode()` (returns mode), `bin_skewness()` (returns skewness), and `bin_kurtosis()` (returns kurtosis) according to binomial variable formulas. They are used in the following manner:
+
+```{r}
+# the below functions return numeric values representing the corresponding summary statistics given number of trials (10) and prob of success (0.5)
+bin_mean(10, 0.5)
+bin_variance(10, 0.5)
+bin_mode(10, 0.5)
+bin_skewness(10, 0.5)
+bin_kurtosis(10, 0.5)
+```
+
+As another side note, the function `bin_choose()` can calculate the number of combinations in which $k$ successes can occur within some $n$ trials total.
+
+```{r}
+bin_choose(10, 5) # number of combinations for choosing 5 successes from 10 trials
+```
